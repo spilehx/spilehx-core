@@ -1,0 +1,12 @@
+{
+  "name": "spilehx-core",
+  "url": "https://github.com/spilehx/spilehx-core",
+  "license": "MIT",
+  "tags": ["haxe", "framework", "utils"],
+  "description": "Core library for spilehx framework",
+  "version": "0.0.1",
+  "classPath": "/src",
+  "contributors": ["spilehx"],
+  "releasenote": "",
+  "dependencies": {}
+}

@@ -4,9 +4,9 @@
   "license": "MIT",
   "tags": ["haxe", "framework", "utils"],
   "description": "Core library for spilehx framework",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "classPath": "src",
   "contributors": ["spilehx"],
-  "releasenote": "Initial public release.",
+  "releasenote": "Added internal logging system and improved error handling.",
   "dependencies": {}
 }

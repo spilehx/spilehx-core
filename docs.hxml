@@ -1,0 +1,29 @@
+# # Generate XML documentation for this project's package only.
+# -cp src
+# # --macro include("spilehx.core")
+# -D doc-gen
+# --no-output
+# -xml docs/types.xml
+
+# --next
+
+# # Rebuild the HTML output from scratch and expose only spilehx.core types.
+# --cmd rm -rf docs/api
+# --cmd haxelib run dox -i docs -o docs/api -in "^spilehx[.]core([.]|$)"
+
+
+
+
+# Include all source modules belonging to this library.
+-cp src
+--macro include("spilehx.core")
+--macro exclude("haxe.*")
+
+-D doc-gen
+--no-output
+-xml docs/types.xml
+
+
+--next
+# --cmd rm -rf docs/api
+--cmd haxelib run dox -i docs/types.xml -o docs/api -in "^spilehx$" -in "^spilehx[.]core($|[.])"

@@ -60,7 +60,7 @@ class GlobalLoggingSettings {
 }
 
 enum CompileTimeLogType {
-	LOG;
+	NORMAL;
 	INFO;
 	WARN;
 	ERROR;

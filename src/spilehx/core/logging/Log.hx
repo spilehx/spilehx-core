@@ -8,7 +8,7 @@ import spilehx.core.logging.GlobalLoggingSettings.CompileTimeLogType;
 class Log {
 	#if macro
 	public static function compileTimeLog(msg:String) {
-		compileTimeLogOutput(msg, CompileTimeLogType.LOG);
+		compileTimeLogOutput(msg, CompileTimeLogType.NORMAL);
 	}
 
 	public static function compileTimeLogInfo(msg:String) {
@@ -36,7 +36,7 @@ class Log {
 			case ERROR:
 				colour = GlobalLoggingSettings.FG_RED;
 
-			case LOG:
+			case NORMAL:
 				colour = GlobalLoggingSettings.FG_DEBUG;
 		}
 

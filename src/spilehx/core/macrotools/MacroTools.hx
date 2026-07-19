@@ -12,25 +12,13 @@ import spilehx.core.logging.Log;
 #end
 
 /**
-	Compile-time helpers used by Spilehx build macros.
-
-	All public APIs in this type are available only in macro context. They may
-	read or modify files relative to the compiler's current working directory and
-	may abort compilation by reporting errors through `haxe.macro.Context`.
+	Compile-time file helpers for project-local paths.
  */
 class MacroTools {
 	#if macro
 	/**
-		Returns a compile-time define value.
-
-		The value is read with `Context.definedValue`, so `varName` refers to a
-		Haxe compiler define such as one supplied with `-D` in an `.hxml` file,
-		not an operating-system environment variable. Compilation is aborted if
-		the define is not present.
-
-		@param varName The name of the compiler define to read.
-		@return The define value reported by the macro context.
-		@throws haxe.macro.Error If the define is not set.
+		Returns a compiler define value.
+		Uses `fallbackValue` when the define is missing, or aborts compilation if no fallback is provided.
 	 */
 	public static function getEnvVar(varName:String, ?fallbackValue:String = null):Dynamic {
 		var envVar = Context.definedValue(varName);
@@ -46,16 +34,7 @@ class MacroTools {
 
 	/**
 		Ensures that a project-local folder exists at compile time.
-
-		Relative paths are resolved against the compiler's current working
-		directory. Absolute paths are accepted only when they resolve inside that
-		directory. The path is normalized with `validateProjectPath` before use.
-		The function writes progress messages to standard output. If the path
-		already exists, no check is made that it is a directory.
-
-		@param path The relative or absolute folder path to validate and create.
-		@throws haxe.macro.Error If the path is outside the project directory or
-			the directory cannot be created.
+		Relative and absolute paths must resolve inside the compiler working directory.
 	 */
 	public static function ensureProjectFolder(path:String):Void {
 		Log.compileTimeLogInfo("Ensuring project folder: " + path);
@@ -74,17 +53,7 @@ class MacroTools {
 
 	/**
 		Ensures that a project-local file exists at compile time.
-
-		Relative paths are resolved against the compiler's current working
-		directory. Absolute paths are accepted only when they resolve inside that
-		directory. The path is normalized with `validateProjectPath` before use.
-		When the file is missing, an empty file is written. The function writes
-		progress messages to standard output. If the path already exists, no check
-		is made that it is a regular file.
-
-		@param filePath The relative or absolute file path to validate and create.
-		@throws haxe.macro.Error If the path is outside the project directory or
-			the file cannot be created.
+		When the file is missing, an empty file is created.
 	 */
 	public static function ensureProjectFile(filePath:String):Void {
 		Log.compileTimeLog("Ensuring project file: " + filePath);
@@ -102,23 +71,8 @@ class MacroTools {
 	}
 
 	/**
-		Validates that a path resolves inside the current project directory.
-
-		The project directory is the compiler's current working directory after
-		`Path.normalize` and trailing slash removal. Relative paths are resolved
-		against that directory. Absolute paths are normalized directly. The
-		returned path is project-relative and starts with `./`, except for the
-		project root itself, which returns `"."`.
-
-		```haxe
-		var path = MacroTools.validateProjectPath("generated/output.txt");
-		// "./generated/output.txt"
-		```
-
-		@param path The relative or absolute path to validate.
-		@return A normalized path relative to the project directory.
-		@throws haxe.macro.Error If the normalized path resolves outside the
-			project directory.
+		Returns a normalized project-local path.
+		Compilation is aborted if the path resolves outside the compiler working directory.
 	 */
 	public static function validateProjectPath(path:String):String {
 		var root = Path.removeTrailingSlashes(Path.normalize(Sys.getCwd()));
@@ -133,6 +87,9 @@ class MacroTools {
 		return relative == "" ? "." : "." + relative;
 	}
 
+	/**
+		Returns files under a project-local folder with their byte sizes.
+	 */
 	public static function getFilesRecursively(path:String):Array<{path:String, size:Int}> {
 		path = validateProjectPath(path);
 
@@ -164,6 +121,9 @@ class MacroTools {
 		return files;
 	}
 
+	/**
+		Copies files recursively between two project-local folders.
+	 */
 	public static function copyAssets(source:String, destination:String):Void {
 		source = validateProjectPath(source);
 		destination = validateProjectPath(destination);

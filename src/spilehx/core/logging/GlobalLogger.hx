@@ -7,8 +7,14 @@ import haxe.macro.Expr;
 import spilehx.core.logging.GlobalLoggingSettings.CompileTimeLogType;
 #end
 
+/**
+	Global logging macros and user-message helpers.
+ */
 class GlobalLogger {
 	#if macro
+	/**
+		Adds the global logger imports to `src/import.hx`.
+	 */
 	public static macro function ensureImport():Expr {
 		Log.compileTimeLog("Setting up Logging System");
 		spilehx.core.macrotools.projectsetup.ProjectConfigEntry.createImportEntry("import spilehx.core.logging.GlobalLogger;");
@@ -19,36 +25,49 @@ class GlobalLogger {
 
 	private static var debugPrefix = Log.debugPrefix;
 
+	/**
+		Shared logging configuration.
+	 */
 	public static var LOG_SETTINGS:GlobalLoggingSettings = GlobalLoggingSettings.settings;
 
-	/*
-	 * Public logging API
-	 *
-	 * These macros expose only the parameters callers should provide.
+	/**
+		Logs a debug message with call-site source information when verbose logging is enabled.
 	 */
 	public static macro function LOG(msg:ExprOf<String>):Expr {
 		return makeLoggingCall(macro GlobalLogger.logImpl($msg));
 	}
 
+	/**
+		Logs an informational message with call-site source information when verbose logging is enabled.
+	 */
 	public static macro function LOG_INFO(msg:ExprOf<String>):Expr {
 		return makeLoggingCall(macro GlobalLogger.logInfoImpl($msg));
 	}
 
+	/**
+		Logs an error message with call-site source information.
+	 */
 	public static macro function LOG_ERROR(msg:ExprOf<String>):Expr {
 		return makeLoggingCall(macro GlobalLogger.logErrorImpl($msg));
 	}
 
+	/**
+		Logs a warning message with call-site source information.
+	 */
 	public static macro function LOG_WARN(msg:ExprOf<String>):Expr {
 		return makeLoggingCall(macro GlobalLogger.logWarnImpl($msg));
 	}
 
+	/**
+		Logs the reflected fields of an object when verbose logging is enabled.
+	 */
 	public static macro function LOG_OBJECT(obj:Expr):Expr {
 		return makeLoggingCall(macro GlobalLogger.logObjectImpl($obj));
 	}
 
-	/*
-	 * User-facing messages do not require source positions, so these remain
-	 * ordinary runtime functions.
+	/**
+		Writes a user-visible message.
+		When `forceMsg` is false, output is suppressed unless verbose logging is enabled.
 	 */
 	public static function USER_MESSAGE(msg:String, ?forceMsg:Bool = true):Void {
 		if (!GlobalLoggingSettings.settings.verbose && !forceMsg) {
@@ -58,6 +77,10 @@ class GlobalLogger {
 		Log.userMessage(msg);
 	}
 
+	/**
+		Writes an informational user-visible message.
+		When `forceMsg` is false, output is suppressed unless verbose logging is enabled.
+	 */
 	public static function USER_MESSAGE_INFO(msg:String, ?forceMsg:Bool = true):Void {
 		if (!GlobalLoggingSettings.settings.verbose && !forceMsg) {
 			return;
@@ -66,6 +89,10 @@ class GlobalLogger {
 		Log.userMessageInfo(msg);
 	}
 
+	/**
+		Writes a warning user-visible message.
+		When `forceMsg` is false, output is suppressed unless verbose logging is enabled.
+	 */
 	public static function USER_MESSAGE_WARN(msg:String, ?forceMsg:Bool = true):Void {
 		if (!GlobalLoggingSettings.settings.verbose && !forceMsg) {
 			return;
@@ -74,6 +101,10 @@ class GlobalLogger {
 		Log.userMessageWarn(msg);
 	}
 
+	/**
+		Writes an error user-visible message.
+		When `forceMsg` is false, output is suppressed unless verbose logging is enabled.
+	 */
 	public static function USER_MESSAGE_ERROR(msg:String, ?forceMsg:Bool = true):Void {
 		if (!GlobalLoggingSettings.settings.verbose && !forceMsg) {
 			return;
@@ -93,13 +124,7 @@ class GlobalLogger {
 	}
 	#end
 
-	/*
-	 * Internal runtime implementations
-	 *
-	 * @:noCompletion keeps these out of normal IDE completion.
-	 * Their PosInfos arguments are omitted by the generated macro calls,
-	 * so Haxe injects the call-site information.
-	 */
+	@:dox(hide)
 	@:noCompletion
 	public static function logImpl(msg:String, ?pos:PosInfos):Void {
 		if (!GlobalLoggingSettings.settings.verbose) {
@@ -109,6 +134,7 @@ class GlobalLogger {
 		Log.log(debugPrefix(pos), msg, GlobalLoggingSettings.settings.toFile);
 	}
 
+	@:dox(hide)
 	@:noCompletion
 	public static function logInfoImpl(msg:String, ?pos:PosInfos):Void {
 		if (!GlobalLoggingSettings.settings.verbose) {
@@ -118,11 +144,13 @@ class GlobalLogger {
 		Log.info(debugPrefix(pos), msg, GlobalLoggingSettings.settings.toFile);
 	}
 
+	@:dox(hide)
 	@:noCompletion
 	public static function logErrorImpl(msg:String, ?pos:PosInfos):Void {
 		Log.error(debugPrefix(pos), msg, GlobalLoggingSettings.settings.toFile);
 	}
 
+	@:dox(hide)
 	@:noCompletion
 	public static function logWarnImpl(msg:String, ?pos:PosInfos):Void {
 		if (!GlobalLoggingSettings.settings.verbose) {
@@ -133,6 +161,7 @@ class GlobalLogger {
 		Log.warn(debugPrefix(pos), msg, GlobalLoggingSettings.settings.toFile);
 	}
 
+	@:dox(hide)
 	@:noCompletion
 	public static function logObjectImpl(obj:Dynamic, ?pos:PosInfos):Void {
 		if (!GlobalLoggingSettings.settings.verbose) {

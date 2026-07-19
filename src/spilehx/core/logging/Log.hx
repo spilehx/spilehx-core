@@ -5,6 +5,7 @@ import haxe.PosInfos;
 import spilehx.core.logging.GlobalLoggingSettings.CompileTimeLogType;
 #end
 
+@:dox(hide)
 class Log {
 	#if macro
 	public static function compileTimeLog(msg:String) {

@@ -4642,90 +4642,128 @@
 		<haxe_doc>Represents a typed AST node.</haxe_doc>
 	</typedef>
 	<class path="spilehx.core.logging.GlobalLoggingSettings" params="" file="src/spilehx/core/logging/GlobalLoggingSettings.hx">
-		<MSG_ERROR public="1" get="inline" set="null" expr="&quot;ERROR&quot;" line="4" static="1">
+		<MSG_ERROR public="1" get="inline" set="null" expr="&quot;ERROR&quot;" line="8" static="1">
 			<c path="String"/>
-			<meta><m n=":value"><e>"ERROR"</e></m></meta>
+			<meta>
+				<m n=":value"><e>"ERROR"</e></m>
+				<m n=":dox"><e>hide</e></m>
+			</meta>
 		</MSG_ERROR>
-		<MSG_DEBUG public="1" get="inline" set="null" expr="&quot;DEBUG&quot;" line="5" static="1">
+		<MSG_DEBUG public="1" get="inline" set="null" expr="&quot;DEBUG&quot;" line="10" static="1">
 			<c path="String"/>
-			<meta><m n=":value"><e>"DEBUG"</e></m></meta>
+			<meta>
+				<m n=":value"><e>"DEBUG"</e></m>
+				<m n=":dox"><e>hide</e></m>
+			</meta>
 		</MSG_DEBUG>
-		<MSG_INFO public="1" get="inline" set="null" expr="&quot;INFO&quot;" line="6" static="1">
+		<MSG_INFO public="1" get="inline" set="null" expr="&quot;INFO&quot;" line="12" static="1">
 			<c path="String"/>
-			<meta><m n=":value"><e>"INFO"</e></m></meta>
+			<meta>
+				<m n=":value"><e>"INFO"</e></m>
+				<m n=":dox"><e>hide</e></m>
+			</meta>
 		</MSG_INFO>
-		<MSG_SOFT public="1" get="inline" set="null" expr="&quot;WARN&quot;" line="7" static="1">
+		<MSG_SOFT public="1" get="inline" set="null" expr="&quot;WARN&quot;" line="14" static="1">
 			<c path="String"/>
-			<meta><m n=":value"><e>"WARN"</e></m></meta>
+			<meta>
+				<m n=":value"><e>"WARN"</e></m>
+				<m n=":dox"><e>hide</e></m>
+			</meta>
 		</MSG_SOFT>
-		<FG_RED public="1" get="inline" set="null" expr="31" line="9" static="1">
+		<FG_RED public="1" get="inline" set="null" expr="31" line="17" static="1">
 			<x path="Int"/>
-			<meta><m n=":value"><e>31</e></m></meta>
+			<meta>
+				<m n=":value"><e>31</e></m>
+				<m n=":dox"><e>hide</e></m>
+			</meta>
 		</FG_RED>
-		<FG_GREEN public="1" get="inline" set="null" expr="32" line="10" static="1">
+		<FG_GREEN public="1" get="inline" set="null" expr="32" line="19" static="1">
 			<x path="Int"/>
-			<meta><m n=":value"><e>32</e></m></meta>
+			<meta>
+				<m n=":value"><e>32</e></m>
+				<m n=":dox"><e>hide</e></m>
+			</meta>
 		</FG_GREEN>
-		<FG_BLUE public="1" get="inline" set="null" expr="34" line="11" static="1">
+		<FG_BLUE public="1" get="inline" set="null" expr="34" line="21" static="1">
 			<x path="Int"/>
-			<meta><m n=":value"><e>34</e></m></meta>
+			<meta>
+				<m n=":value"><e>34</e></m>
+				<m n=":dox"><e>hide</e></m>
+			</meta>
 		</FG_BLUE>
-		<FG_DEBUG public="1" get="inline" set="null" expr="93" line="12" static="1">
+		<FG_DEBUG public="1" get="inline" set="null" expr="93" line="23" static="1">
 			<x path="Int"/>
-			<meta><m n=":value"><e>93</e></m></meta>
+			<meta>
+				<m n=":value"><e>93</e></m>
+				<m n=":dox"><e>hide</e></m>
+			</meta>
 		</FG_DEBUG>
-		<settings final="1" public="1" set="null" expr="new GlobalLoggingSettings()" line="15" static="1">
+		<settings final="1" public="1" set="null" expr="new GlobalLoggingSettings()" line="29" static="1">
 			<c path="spilehx.core.logging.GlobalLoggingSettings"/>
 			<meta><m n=":value"><e>new GlobalLoggingSettings()</e></m></meta>
+			<haxe_doc>Singleton settings instance used by `GlobalLogger`.</haxe_doc>
 		</settings>
 		<toFile public="1" get="accessor" set="accessor">
 			<x path="Bool"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>Enables log file output on non-JavaScript targets.</haxe_doc>
 		</toFile>
 		<logFilePath public="1" get="accessor" set="null">
 			<c path="String"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>Current log file path derived from `logFileSubFolder` and `logFileName`.</haxe_doc>
 		</logFilePath>
 		<logFileLinePrefix public="1">
 			<c path="String"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>Prefix written before each log file entry.</haxe_doc>
 		</logFileLinePrefix>
 		<maxLogFileLength public="1">
 			<x path="Int"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>Maximum number of entries retained in the log file.</haxe_doc>
 		</maxLogFileLength>
 		<logFileSubFolder public="1">
 			<c path="String"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>Folder used for log file output.</haxe_doc>
 		</logFileSubFolder>
 		<logFileName public="1">
 			<c path="String"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>File name used for log file output.</haxe_doc>
 		</logFileName>
 		<remoteLogUrl public="1">
 			<c path="String"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>Remote logging endpoint used for remote log messages.</haxe_doc>
 		</remoteLogUrl>
 		<verbose public="1">
 			<x path="Bool"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>Enables verbose logger output.</haxe_doc>
 		</verbose>
 		<stdErrOut public="1">
 			<x path="Bool"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>Sends error log messages to stderr on non-JavaScript targets.</haxe_doc>
 		</stdErrOut>
-		<clearLogFile public="1" set="method" line="38"><f a=""><x path="Void"/></f></clearLogFile>
-		<get_toFile set="method" line="43"><f a=""><x path="Bool"/></f></get_toFile>
-		<set_toFile set="method" line="52"><f a="toFile">
+		<clearLogFile public="1" set="method" line="82">
+			<f a=""><x path="Void"/></f>
+			<haxe_doc>Clears the configured log file.</haxe_doc>
+		</clearLogFile>
+		<get_toFile set="method" line="87"><f a=""><x path="Bool"/></f></get_toFile>
+		<set_toFile set="method" line="96"><f a="toFile">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_toFile>
-		<get_logFilePath set="method" line="56"><f a=""><c path="String"/></f></get_logFilePath>
-		<new set="method" line="27"><f a=""><x path="Void"/></f></new>
+		<get_logFilePath set="method" line="100"><f a=""><c path="String"/></f></get_logFilePath>
+		<new set="method" line="68"><f a=""><x path="Void"/></f></new>
+		<haxe_doc>Shared settings for the global logging API.</haxe_doc>
 		<meta><m n=":directlyUsed"/></meta>
 	</class>
 	<class path="spilehx.core.logging.Log" params="" file="src/spilehx/core/logging/Log.hx">
-		<log public="1" set="method" line="49" static="1">
+		<log public="1" set="method" line="50" static="1">
 			<f a="debugprefix:msg:?toFile" v="::false">
 				<c path="String"/>
 				<c path="String"/>
@@ -4734,7 +4772,7 @@
 			</f>
 			<meta><m n=":value"><e>{ toFile : false }</e></m></meta>
 		</log>
-		<info public="1" set="method" line="53" static="1">
+		<info public="1" set="method" line="54" static="1">
 			<f a="debugprefix:msg:?toFile" v="::false">
 				<c path="String"/>
 				<c path="String"/>
@@ -4743,7 +4781,7 @@
 			</f>
 			<meta><m n=":value"><e>{ toFile : false }</e></m></meta>
 		</info>
-		<warn public="1" set="method" line="57" static="1">
+		<warn public="1" set="method" line="58" static="1">
 			<f a="debugprefix:msg:?toFile" v="::false">
 				<c path="String"/>
 				<c path="String"/>
@@ -4752,7 +4790,7 @@
 			</f>
 			<meta><m n=":value"><e>{ toFile : false }</e></m></meta>
 		</warn>
-		<error public="1" set="method" line="61" static="1">
+		<error public="1" set="method" line="62" static="1">
 			<f a="debugprefix:msg:?toFile" v="::false">
 				<c path="String"/>
 				<c path="String"/>
@@ -4761,28 +4799,28 @@
 			</f>
 			<meta><m n=":value"><e>{ toFile : false }</e></m></meta>
 		</error>
-		<userMessage public="1" set="method" line="65" static="1"><f a="msg">
+		<userMessage public="1" set="method" line="66" static="1"><f a="msg">
 	<c path="String"/>
 	<x path="Void"/>
 </f></userMessage>
-		<userMessageInfo public="1" set="method" line="70" static="1"><f a="msg">
+		<userMessageInfo public="1" set="method" line="71" static="1"><f a="msg">
 	<c path="String"/>
 	<x path="Void"/>
 </f></userMessageInfo>
-		<userMessageWarn public="1" set="method" line="75" static="1"><f a="msg">
+		<userMessageWarn public="1" set="method" line="76" static="1"><f a="msg">
 	<c path="String"/>
 	<x path="Void"/>
 </f></userMessageWarn>
-		<userMessageError public="1" set="method" line="80" static="1"><f a="msg">
+		<userMessageError public="1" set="method" line="81" static="1"><f a="msg">
 	<c path="String"/>
 	<x path="Void"/>
 </f></userMessageError>
-		<logObject public="1" set="method" line="85" static="1"><f a="prefix:obj">
+		<logObject public="1" set="method" line="86" static="1"><f a="prefix:obj">
 	<c path="String"/>
 	<d/>
 	<x path="Void"/>
 </f></logObject>
-		<out set="method" line="100" static="1">
+		<out set="method" line="101" static="1">
 			<f a="debugprefix:msg:?type:?toFile" v="::&quot;&quot;:false">
 				<c path="String"/>
 				<c path="String"/>
@@ -4792,15 +4830,15 @@
 			</f>
 			<meta><m n=":value"><e>{ toFile : false, type : "" }</e></m></meta>
 		</out>
-		<stdErrOut set="method" line="128" static="1"><f a="msg">
+		<stdErrOut set="method" line="129" static="1"><f a="msg">
 	<c path="String"/>
 	<x path="Void"/>
 </f></stdErrOut>
-		<sendRemoteLog public="1" set="method" line="135" static="1"><f a="msg">
+		<sendRemoteLog public="1" set="method" line="136" static="1"><f a="msg">
 	<c path="String"/>
 	<x path="Void"/>
 </f></sendRemoteLog>
-		<appendTextToLogFile set="method" line="158" static="1">
+		<appendTextToLogFile set="method" line="159" static="1">
 			<f a="msg:?type" v=":&quot;&quot;">
 				<c path="String"/>
 				<c path="String"/>
@@ -4808,130 +4846,173 @@
 			</f>
 			<meta><m n=":value"><e>{ type : "" }</e></m></meta>
 		</appendTextToLogFile>
-		<debugPrefix public="1" set="method" line="178" static="1"><f a="pos">
+		<debugPrefix public="1" set="method" line="179" static="1"><f a="pos">
 	<t path="haxe.PosInfos"/>
 	<c path="String"/>
 </f></debugPrefix>
-		<platfromSpecificLogCommand set="method" line="183" static="1"><f a="msg">
+		<platfromSpecificLogCommand set="method" line="184" static="1"><f a="msg">
 	<c path="String"/>
 	<x path="Void"/>
 </f></platfromSpecificLogCommand>
-		<appendTextToFile public="1" set="method" line="192" static="1"><f a="content:outputFilePath">
+		<appendTextToFile public="1" set="method" line="193" static="1"><f a="content:outputFilePath">
 	<c path="String"/>
 	<c path="String"/>
 	<x path="Void"/>
 </f></appendTextToFile>
-		<clearLogFile public="1" set="method" line="217" static="1"><f a=""><x path="Void"/></f></clearLogFile>
-		<writeLogFile set="method" line="221" static="1"><f a="text">
+		<clearLogFile public="1" set="method" line="218" static="1"><f a=""><x path="Void"/></f></clearLogFile>
+		<writeLogFile set="method" line="222" static="1"><f a="text">
 	<c path="String"/>
 	<x path="Void"/>
 </f></writeLogFile>
-		<meta><m n=":directlyUsed"/></meta>
+		<meta>
+			<m n=":directlyUsed"/>
+			<m n=":dox"><e>hide</e></m>
+		</meta>
 	</class>
 	<class path="spilehx.core.logging.GlobalLogger" params="" file="src/spilehx/core/logging/GlobalLogger.hx">
-		<debugPrefix expr="Log.debugPrefix" line="20" static="1">
+		<debugPrefix expr="Log.debugPrefix" line="26" static="1">
 			<f a="pos">
 				<t path="haxe.PosInfos"/>
 				<c path="String"/>
 			</f>
 			<meta><m n=":value"><e>Log.debugPrefix</e></m></meta>
 		</debugPrefix>
-		<LOG_SETTINGS public="1" expr="GlobalLoggingSettings.settings" line="22" static="1">
+		<LOG_SETTINGS public="1" expr="GlobalLoggingSettings.settings" line="31" static="1">
 			<c path="spilehx.core.logging.GlobalLoggingSettings"/>
 			<meta><m n=":value"><e>GlobalLoggingSettings.settings</e></m></meta>
+			<haxe_doc>Shared logging configuration.</haxe_doc>
 		</LOG_SETTINGS>
-		<LOG public="1" set="method" static="1"><f a="msg">
-	<c path="String"/>
-	<d/>
-</f></LOG>
-		<LOG_INFO public="1" set="method" static="1"><f a="msg">
-	<c path="String"/>
-	<d/>
-</f></LOG_INFO>
-		<LOG_ERROR public="1" set="method" static="1"><f a="msg">
-	<c path="String"/>
-	<d/>
-</f></LOG_ERROR>
-		<LOG_WARN public="1" set="method" static="1"><f a="msg">
-	<c path="String"/>
-	<d/>
-</f></LOG_WARN>
-		<LOG_OBJECT public="1" set="method" static="1"><f a="obj">
-	<d/>
-	<d/>
-</f></LOG_OBJECT>
-		<USER_MESSAGE public="1" set="method" line="53" static="1">
+		<LOG public="1" set="method" static="1">
+			<f a="msg">
+				<c path="String"/>
+				<d/>
+			</f>
+			<haxe_doc>Logs a debug message with call-site source information when verbose logging is enabled.</haxe_doc>
+		</LOG>
+		<LOG_INFO public="1" set="method" static="1">
+			<f a="msg">
+				<c path="String"/>
+				<d/>
+			</f>
+			<haxe_doc>Logs an informational message with call-site source information when verbose logging is enabled.</haxe_doc>
+		</LOG_INFO>
+		<LOG_ERROR public="1" set="method" static="1">
+			<f a="msg">
+				<c path="String"/>
+				<d/>
+			</f>
+			<haxe_doc>Logs an error message with call-site source information.</haxe_doc>
+		</LOG_ERROR>
+		<LOG_WARN public="1" set="method" static="1">
+			<f a="msg">
+				<c path="String"/>
+				<d/>
+			</f>
+			<haxe_doc>Logs a warning message with call-site source information.</haxe_doc>
+		</LOG_WARN>
+		<LOG_OBJECT public="1" set="method" static="1">
+			<f a="obj">
+				<d/>
+				<d/>
+			</f>
+			<haxe_doc>Logs the reflected fields of an object when verbose logging is enabled.</haxe_doc>
+		</LOG_OBJECT>
+		<USER_MESSAGE public="1" set="method" line="72" static="1">
 			<f a="msg:?forceMsg" v=":true">
 				<c path="String"/>
 				<x path="Bool"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":value"><e>{ forceMsg : true }</e></m></meta>
+			<haxe_doc>Writes a user-visible message.
+		When `forceMsg` is false, output is suppressed unless verbose logging is enabled.</haxe_doc>
 		</USER_MESSAGE>
-		<USER_MESSAGE_INFO public="1" set="method" line="61" static="1">
+		<USER_MESSAGE_INFO public="1" set="method" line="84" static="1">
 			<f a="msg:?forceMsg" v=":true">
 				<c path="String"/>
 				<x path="Bool"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":value"><e>{ forceMsg : true }</e></m></meta>
+			<haxe_doc>Writes an informational user-visible message.
+		When `forceMsg` is false, output is suppressed unless verbose logging is enabled.</haxe_doc>
 		</USER_MESSAGE_INFO>
-		<USER_MESSAGE_WARN public="1" set="method" line="69" static="1">
+		<USER_MESSAGE_WARN public="1" set="method" line="96" static="1">
 			<f a="msg:?forceMsg" v=":true">
 				<c path="String"/>
 				<x path="Bool"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":value"><e>{ forceMsg : true }</e></m></meta>
+			<haxe_doc>Writes a warning user-visible message.
+		When `forceMsg` is false, output is suppressed unless verbose logging is enabled.</haxe_doc>
 		</USER_MESSAGE_WARN>
-		<USER_MESSAGE_ERROR public="1" set="method" line="77" static="1">
+		<USER_MESSAGE_ERROR public="1" set="method" line="108" static="1">
 			<f a="msg:?forceMsg" v=":true">
 				<c path="String"/>
 				<x path="Bool"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":value"><e>{ forceMsg : true }</e></m></meta>
+			<haxe_doc>Writes an error user-visible message.
+		When `forceMsg` is false, output is suppressed unless verbose logging is enabled.</haxe_doc>
 		</USER_MESSAGE_ERROR>
-		<logImpl public="1" set="method" line="104" static="1">
+		<logImpl public="1" set="method" line="129" static="1">
 			<f a="msg:?pos">
 				<c path="String"/>
 				<x path="Null"><t path="haxe.PosInfos"/></x>
 				<x path="Void"/>
 			</f>
-			<meta><m n=":noCompletion"/></meta>
+			<meta>
+				<m n=":dox"><e>hide</e></m>
+				<m n=":noCompletion"/>
+			</meta>
 		</logImpl>
-		<logInfoImpl public="1" set="method" line="113" static="1">
+		<logInfoImpl public="1" set="method" line="139" static="1">
 			<f a="msg:?pos">
 				<c path="String"/>
 				<x path="Null"><t path="haxe.PosInfos"/></x>
 				<x path="Void"/>
 			</f>
-			<meta><m n=":noCompletion"/></meta>
+			<meta>
+				<m n=":dox"><e>hide</e></m>
+				<m n=":noCompletion"/>
+			</meta>
 		</logInfoImpl>
-		<logErrorImpl public="1" set="method" line="122" static="1">
+		<logErrorImpl public="1" set="method" line="149" static="1">
 			<f a="msg:?pos">
 				<c path="String"/>
 				<x path="Null"><t path="haxe.PosInfos"/></x>
 				<x path="Void"/>
 			</f>
-			<meta><m n=":noCompletion"/></meta>
+			<meta>
+				<m n=":dox"><e>hide</e></m>
+				<m n=":noCompletion"/>
+			</meta>
 		</logErrorImpl>
-		<logWarnImpl public="1" set="method" line="127" static="1">
+		<logWarnImpl public="1" set="method" line="155" static="1">
 			<f a="msg:?pos">
 				<c path="String"/>
 				<x path="Null"><t path="haxe.PosInfos"/></x>
 				<x path="Void"/>
 			</f>
-			<meta><m n=":noCompletion"/></meta>
+			<meta>
+				<m n=":dox"><e>hide</e></m>
+				<m n=":noCompletion"/>
+			</meta>
 		</logWarnImpl>
-		<logObjectImpl public="1" set="method" line="137" static="1">
+		<logObjectImpl public="1" set="method" line="166" static="1">
 			<f a="obj:?pos">
 				<d/>
 				<x path="Null"><t path="haxe.PosInfos"/></x>
 				<x path="Void"/>
 			</f>
-			<meta><m n=":noCompletion"/></meta>
+			<meta>
+				<m n=":dox"><e>hide</e></m>
+				<m n=":noCompletion"/>
+			</meta>
 		</logObjectImpl>
+		<haxe_doc>Global logging macros and user-message helpers.</haxe_doc>
 	</class>
 	<enum path="spilehx.core.logging.CompileTimeLogType" params="" file="src/spilehx/core/logging/GlobalLoggingSettings.hx" module="spilehx.core.logging.GlobalLoggingSettings">
 		<NORMAL/>
@@ -4943,43 +5024,53 @@
 			<m n=":dox"><e>hide</e></m>
 		</meta>
 	</enum>
-	<class path="spilehx.core.macrotools.MacroTools" params="" file="src/spilehx/core/macrotools/MacroTools.hx"><haxe_doc>Compile-time helpers used by Spilehx build macros.
-
-	All public APIs in this type are available only in macro context. They may
-	read or modify files relative to the compiler's current working directory and
-	may abort compilation by reporting errors through `haxe.macro.Context`.</haxe_doc></class>
-	<class path="spilehx.core.macrotools.projectsetup.ProjectConfigEntry" params="" file="src/spilehx/core/macrotools/projectsetup/ProjectConfigEntry.hx"/>
+	<class path="spilehx.core.macrotools.MacroTools" params="" file="src/spilehx/core/macrotools/MacroTools.hx"><haxe_doc>Compile-time file helpers for project-local paths.</haxe_doc></class>
+	<class path="spilehx.core.macrotools.projectsetup.ProjectConfigEntry" params="" file="src/spilehx/core/macrotools/projectsetup/ProjectConfigEntry.hx"><meta><m n=":dox"><e>hide</e></m></meta></class>
 	<class path="spilehx.core.projectmanagement.Archive" params="" file="src/spilehx/core/projectmanagement/Archive.hx">
-		<createArchive public="1" set="method" line="7" static="1"><f a="sourcePath:targetPath:archiveName:onComplete">
-	<c path="String"/>
-	<c path="String"/>
-	<c path="String"/>
-	<f a=""><x path="Void"/></f>
-	<x path="Void"/>
-</f></createArchive>
-		<extractArchive public="1" set="method" line="29" static="1"><f a="sourcePath:targetPath:onComplete">
-	<c path="String"/>
-	<c path="String"/>
-	<f a=""><x path="Void"/></f>
-	<x path="Void"/>
-</f></extractArchive>
+		<createArchive public="1" set="method" line="14" static="1">
+			<f a="sourcePath:targetPath:archiveName:onComplete">
+				<c path="String"/>
+				<c path="String"/>
+				<c path="String"/>
+				<f a=""><x path="Void"/></f>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Creates an archive from `sourcePath` and calls `onComplete` after successful compression.
+		Throws if the system `tar` command fails.</haxe_doc>
+		</createArchive>
+		<extractArchive public="1" set="method" line="40" static="1">
+			<f a="sourcePath:targetPath:onComplete">
+				<c path="String"/>
+				<c path="String"/>
+				<f a=""><x path="Void"/></f>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Extracts an archive into `targetPath` and calls `onComplete` after successful extraction.
+		Throws if the system `tar` command fails.</haxe_doc>
+		</extractArchive>
+		<haxe_doc>Creates and extracts `.tar.xz` archives.</haxe_doc>
 	</class>
 	<class path="spilehx.core.projectmanagement.FolderFingerprint" params="" file="src/spilehx/core/projectmanagement/FolderFingerprint.hx">
-		<fingerprint public="1" set="method" line="8" static="1"><f a="folder">
-	<c path="String"/>
-	<c path="String"/>
-</f></fingerprint>
-		<scan set="method" line="24" static="1"><f a="root:relative:entries">
+		<fingerprint public="1" set="method" line="15" static="1">
+			<f a="folder">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>Returns an 8-character fingerprint for a folder.
+		The fingerprint changes when file paths, sizes, or modification times change.</haxe_doc>
+		</fingerprint>
+		<scan set="method" line="31" static="1"><f a="root:relative:entries">
 	<c path="String"/>
 	<c path="String"/>
 	<c path="Array"><c path="String"/></c>
 	<x path="Void"/>
 </f></scan>
-		<compare set="method" line="43" static="1"><f a="a:b">
+		<compare set="method" line="50" static="1"><f a="a:b">
 	<c path="String"/>
 	<c path="String"/>
 	<x path="Int"/>
 </f></compare>
+		<haxe_doc>Builds short fingerprints for folder contents.</haxe_doc>
 	</class>
 	<typedef path="sys.FileStat" params="" file="/usr/share/haxe/std/sys/FileStat.hx">
 		<a>

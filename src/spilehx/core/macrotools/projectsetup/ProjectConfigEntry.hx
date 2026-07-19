@@ -5,6 +5,7 @@ import sys.io.File;
 import spilehx.core.macrotools.MacroTools;
 #end
 
+@:dox(hide)
 class ProjectConfigEntry {
 	#if macro
 	@:isVar public var file(default, null):String;

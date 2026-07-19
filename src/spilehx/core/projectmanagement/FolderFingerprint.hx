@@ -4,7 +4,14 @@ import haxe.crypto.Sha256;
 import sys.FileSystem;
 import haxe.io.Path;
 
+/**
+	Builds short fingerprints for folder contents.
+ */
 class FolderFingerprint {
+	/**
+		Returns an 8-character fingerprint for a folder.
+		The fingerprint changes when file paths, sizes, or modification times change.
+	 */
 	public static function fingerprint(folder:String):String {
 		if (!FileSystem.isDirectory(folder)) {
 			throw 'Not a directory: $folder';

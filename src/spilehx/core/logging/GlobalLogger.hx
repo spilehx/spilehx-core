@@ -16,7 +16,7 @@ class GlobalLogger {
 		Adds the global logger imports to `src/import.hx`.
 	 */
 	public static macro function ensureImport():Expr {
-		Log.compileTimeLog("Setting up Logging System");
+		// Log.compileTimeLog("Setting up Logging System");
 		spilehx.core.macrotools.projectsetup.ProjectConfigEntry.createImportEntry("import spilehx.core.logging.GlobalLogger;");
 		spilehx.core.macrotools.projectsetup.ProjectConfigEntry.createImportEntry("import spilehx.core.logging.GlobalLogger.*;");
 		return macro {};

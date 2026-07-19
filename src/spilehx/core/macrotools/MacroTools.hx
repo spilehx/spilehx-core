@@ -56,17 +56,18 @@ class MacroTools {
 		When the file is missing, an empty file is created.
 	 */
 	public static function ensureProjectFile(filePath:String):Void {
-		Log.compileTimeLog("Ensuring project file: " + filePath);
+		// Log.compileTimeLog("Ensuring project file: " + filePath);
 		var validatedLocalFilePath:String = validateProjectPath(filePath);
 
 		if (!FileSystem.exists(validatedLocalFilePath)) {
 			try {
+				Log.compileTimeLog("Ensuring project file: " + filePath);
 				File.saveContent(validatedLocalFilePath, "");
 			} catch (e:Dynamic) {
 				Context.error("Failed to create file '" + validatedLocalFilePath + "': " + Std.string(e), Context.currentPos());
 			}
 		} else {
-			Log.compileTimeLogInfo("Project file already exists: " + validatedLocalFilePath);
+			// Log.compileTimeLogInfo("Project file already exists: " + validatedLocalFilePath);
 		}
 	}
 

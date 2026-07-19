@@ -3,7 +3,14 @@ package spilehx.core.projectmanagement;
 import sys.io.Process;
 import sys.io.File;
 
+/**
+	Creates and extracts `.tar.xz` archives.
+ */
 class Archive {
+	/**
+		Creates an archive from `sourcePath` and calls `onComplete` after successful compression.
+		Throws if the system `tar` command fails.
+	 */
 	public static function createArchive(sourcePath:String, targetPath:String, archiveName:String, onComplete:Void->Void):Void {
 		Sys.println("Creating archive: " + archiveName + " from folder: " + sourcePath);
 
@@ -26,6 +33,10 @@ class Archive {
 	}
 
 
+	/**
+		Extracts an archive into `targetPath` and calls `onComplete` after successful extraction.
+		Throws if the system `tar` command fails.
+	 */
     public static function extractArchive(sourcePath:String, targetPath:String, onComplete:Void->Void):Void {
 		Sys.println("extract archive: " + sourcePath);
 

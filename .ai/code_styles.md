@@ -1,45 +1,35 @@
 # Code Style
 
-## Scope
+Shared style rules for this repository.
 
-Use the existing Haxe style in this repository. Prefer consistency over personal preference.
+## Haxe
 
-## Formatting
-
+- Match the existing style in nearby files.
 - Use tabs for indentation.
-- Place opening braces on the same line.
-- Use explicit types on public APIs and where they improve clarity.
-- Keep imports grouped at the top, with conditional macro imports inside `#if macro`.
-- Keep target-specific code inside clear Haxe conditional compilation blocks.
-- Preserve existing naming conventions: `PascalCase` types, `camelCase` members, and `UPPER_CASE` constants.
-
-## Design
-
-- Apply single responsibility: each class and function should have one clear purpose.
-- Keep functions small and focused.
-- Prefer straightforward control flow and early returns.
-- Apply DRY only when duplication represents the same stable concept.
-- Apply KISS: avoid unnecessary abstraction, indirection, metaprogramming, or configuration.
-- Do not add dependencies unless explicitly required.
-- Preserve public APIs and cross-target behaviour unless instructed otherwise.
-
-## Readability
-
-- Choose descriptive names that communicate intent.
-- Make behaviour clear from the code without relying on comments.
-- Avoid hidden side effects and surprising state changes.
-- Keep related logic together.
-- Remove dead, redundant, or obsolete code when code changes are permitted.
+- Put opening braces on the same line.
+- Keep imports at the top; keep macro-only imports inside `#if macro`.
+- Preserve target conditionals such as `#if macro` and `#if (!js)`.
+- Keep public API types explicit.
+- Do not add dependencies unless the user asks.
 
 ## Comments
 
-- Comments must explain purpose, constraints, target behaviour, or non-obvious decisions.
-- Do not restate the code.
-- Keep documentation concise, accurate, and maintained with the implementation.
-- Use Haxe documentation comments for public APIs where documentation adds value.
+- Keep comments short and technical.
+- Document purpose and important behavior, not obvious implementation steps.
+- Use Haxe doc comments only for public-facing API:
+
+```haxe
+/**
+	Writes a message using the configured logger.
+ */
+public function log(message:String):Void {
+}
+```
+
+- Use `@:dox(hide)` for internal declarations that must remain visible to Haxe but should not appear in generated docs.
 
 ## Changes
 
-- Make the smallest maintainable change.
-- Avoid unrelated refactoring or formatting changes.
-- Prefer clear, readable, easily tested code over clever code.
+- Preserve runtime behavior unless the user explicitly asks for implementation changes.
+- Keep changes focused on the requested files and task.
+- Review the diff before finishing.

@@ -1,37 +1,36 @@
 # AGENTS.md
 
+Instructions for AI assistants working in this repository.
+
 ## Purpose
 
-Review and maintain documentation for this Haxe core library.
+Help users understand, document, and use `spilehx-core` in Haxe projects.
 
-## Scope
+## Read First
 
-- **Do not modify any Haxe code.**
-- Only add, remove, improve, or reorganize documentation comments.
-- Preserve all existing code, formatting, logic, and behavior.
+- Read [README.md](README.md) for the public library overview.
+- Read [.ai/code_styles.md](.ai/code_styles.md) before editing Haxe or documentation.
+- Read a task file from `.ai/tasks/` when the user request matches one of the triggers below.
+- Read the relevant `.hx` source before giving API-specific guidance.
 
-## AI Documentation
+Instruction priority: `AGENTS.md` > `.ai/tasks/*` > `.ai/code_styles.md` > `README.md`.
 
-- Read all relevant files in `./ai/` before starting work.
-- Treat documents in `./ai/` as project-specific instructions.
-- Follow `./ai/code_styles.md` when reviewing or writing documentation comments.
-- If instructions conflict, `AGENTS.md` takes precedence.
+## Task Routing
 
-## Principles
+- Use [.ai/tasks/use-core-lib.md](.ai/tasks/use-core-lib.md) when the user asks how to use, configure, import, or troubleshoot this library in a Haxe project.
+- Use [.ai/tasks/update-api-docs.md](.ai/tasks/update-api-docs.md) when the user asks to review, add, rewrite, or clean up inline Haxe API documentation.
 
-- Preserve the existing architecture and coding style.
-- Do not introduce assumptions about implementation.
-- Documentation must accurately reflect the existing code.
-- Ask for clarification rather than guessing intent.
+## General Rules
 
-## Documentation
+- Keep answers short, practical, and Haxe-focused.
+- Preserve existing behavior, public signatures, macro behavior, and conditional compilation unless the user explicitly asks for code changes.
+- Do not invent API behavior. Confirm it from source, README, or build files.
+- Prefer small edits over broad rewrites.
+- Ask one clear question when the user request is ambiguous.
 
-- Keep comments concise and technical.
-- Document purpose, behavior, parameters, return values, and important implementation details where appropriate.
-- Remove outdated or redundant documentation.
-- Do not document obvious code.
+## Repository Scope
 
-## Communication
-
-- Keep responses short and technical.
-- Ask one clarification question at a time when required.
+- Source code lives in `src/`.
+- User-facing docs live in `README.md` and generated docs under `docs/`.
+- AI helper instructions live in `.ai/`.
+- `extraParams.hxml` contains the optional logging import setup macro.

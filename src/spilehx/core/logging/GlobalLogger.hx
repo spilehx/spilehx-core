@@ -10,7 +10,8 @@ import spilehx.core.logging.GlobalLoggingSettings.CompileTimeLogType;
 class GlobalLogger {
 	#if macro
 	public static macro function ensureImport():Expr {
-		Log.compileTimeLog("Setting up Logging System", CompileTimeLogType.INFO);
+		Log.compileTimeLog("Setting up Logging System");
+		spilehx.core.macrotools.projectsetup.ProjectConfigEntry.createImportEntry("import spilehx.core.logging.GlobalLogger;");
 		spilehx.core.macrotools.projectsetup.ProjectConfigEntry.createImportEntry("import spilehx.core.logging.GlobalLogger.*;");
 		return macro {};
 	}

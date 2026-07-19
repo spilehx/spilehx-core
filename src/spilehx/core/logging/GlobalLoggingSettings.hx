@@ -1,7 +1,6 @@
 package spilehx.core.logging;
 
 class GlobalLoggingSettings {
-
 	public static inline var MSG_ERROR = "ERROR";
 	public static inline var MSG_DEBUG = "DEBUG";
 	public static inline var MSG_INFO = "INFO";
@@ -11,7 +10,6 @@ class GlobalLoggingSettings {
 	public static inline var FG_GREEN:Int = 32;
 	public static inline var FG_BLUE:Int = 34;
 	public static inline var FG_DEBUG:Int = 93;
-
 
 	// a little singleton to hold settings
 	public static final settings:GlobalLoggingSettings = new GlobalLoggingSettings();
@@ -59,13 +57,11 @@ class GlobalLoggingSettings {
 		this.logFilePath = this.logFileSubFolder + "/" + this.logFileName;
 		return logFilePath;
 	}
-
 }
 
-
 enum CompileTimeLogType {
+	LOG;
 	INFO;
 	WARN;
 	ERROR;
-	DEBUG;
 }

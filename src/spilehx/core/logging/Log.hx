@@ -1,57 +1,50 @@
 package spilehx.core.logging;
 
 import haxe.PosInfos;
+#if macro
+import spilehx.core.logging.GlobalLoggingSettings.CompileTimeLogType;
+#end
 
 class Log {
-
 	#if macro
+	public static function compileTimeLog(msg:String) {
+		compileTimeLogOutput(msg, CompileTimeLogType.LOG);
+	}
 
-	public static function compileTimeLog(msg:String, type:spilehx.core.logging.GlobalLoggingSettings.CompileTimeLogType = spilehx.core.logging.GlobalLoggingSettings.CompileTimeLogType.INFO) {
-		
+	public static function compileTimeLogInfo(msg:String) {
+		compileTimeLogOutput(msg, CompileTimeLogType.INFO);
+	}
 
+	public static function compileTimeLogWarn(msg:String) {
+		compileTimeLogOutput(msg, CompileTimeLogType.WARN);
+	}
 
+	public static function compileTimeLogError(msg:String) {
+		compileTimeLogOutput(msg, CompileTimeLogType.ERROR);
+	}
 
+	private static function compileTimeLogOutput(msg:String, type:CompileTimeLogType = CompileTimeLogType.INFO) {
+		var colour:Int = GlobalLoggingSettings.FG_GREEN;
 
-
-
-			var colour:Int = GlobalLoggingSettings.FG_GREEN;
-
-switch (type) {
+		switch (type) {
 			case INFO:
 				colour = GlobalLoggingSettings.FG_GREEN;
-	
+
 			case WARN:
 				colour = GlobalLoggingSettings.FG_BLUE;
-			
+
 			case ERROR:
 				colour = GlobalLoggingSettings.FG_RED;
-		
-			case DEBUG:
+
+			case LOG:
 				colour = GlobalLoggingSettings.FG_DEBUG;
-	
 		}
-
-
-
-			
-		// if (error) {
-		// 	COLOR = GlobalLoggingSettings.FG_RED;
-		// }
 
 		var out:String = "\033[1;" + colour + "m" + msg + " \033[0m";
 
 		Sys.println(out);
-		
-		
-		
-	
-	
 	}
-
 	#end
-
-
-
 
 	public static function log(debugprefix:String, msg:String, toFile:Bool = false) {
 		out(debugprefix, msg, GlobalLoggingSettings.MSG_DEBUG, toFile);

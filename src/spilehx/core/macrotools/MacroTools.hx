@@ -6,6 +6,11 @@ import haxe.macro.Context;
 import sys.FileSystem;
 import haxe.io.Path;
 
+#if macro
+import spilehx.core.logging.Log;
+
+#end
+
 /**
 	Compile-time helpers used by Spilehx build macros.
 
@@ -53,7 +58,7 @@ class MacroTools {
 			the directory cannot be created.
 	 */
 	public static function ensureProjectFolder(path:String):Void {
-		Sys.println("Ensuring project folder: " + path);
+		Log.compileTimeLogInfo("Ensuring project folder: " + path);
 		var validatedLocalFolderPath:String = validateProjectPath(path);
 
 		if (!FileSystem.exists(validatedLocalFolderPath)) {
@@ -63,7 +68,7 @@ class MacroTools {
 				Context.error("Failed to create directory '" + validatedLocalFolderPath + "': " + Std.string(e), Context.currentPos());
 			}
 		} else {
-			// Sys.println("Project folder already exists: " + validatedLocalFolderPath);
+			// Log.compileTimeLogInfo("Project folder already exists: " + validatedLocalFolderPath);
 		}
 	}
 
@@ -82,7 +87,7 @@ class MacroTools {
 			the file cannot be created.
 	 */
 	public static function ensureProjectFile(filePath:String):Void {
-		Sys.println("Ensuring project file: " + filePath);
+		Log.compileTimeLog("Ensuring project file: " + filePath);
 		var validatedLocalFilePath:String = validateProjectPath(filePath);
 
 		if (!FileSystem.exists(validatedLocalFilePath)) {
@@ -92,7 +97,7 @@ class MacroTools {
 				Context.error("Failed to create file '" + validatedLocalFilePath + "': " + Std.string(e), Context.currentPos());
 			}
 		} else {
-			Sys.println("Project file already exists: " + validatedLocalFilePath);
+			Log.compileTimeLogInfo("Project file already exists: " + validatedLocalFilePath);
 		}
 	}
 

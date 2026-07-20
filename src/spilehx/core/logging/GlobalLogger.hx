@@ -17,8 +17,10 @@ class GlobalLogger {
 	 */
 	public static macro function ensureImport():Expr {
 		// Log.compileTimeLog("Setting up Logging System");
-		spilehx.core.macrotools.projectsetup.ProjectConfigEntry.createImportEntry("import spilehx.core.logging.GlobalLogger;");
-		spilehx.core.macrotools.projectsetup.ProjectConfigEntry.createImportEntry("import spilehx.core.logging.GlobalLogger.*;");
+
+		var projectPath = spilehx.core.macrotools.MacroTools.validateProjectPath(".");
+		spilehx.core.projectsetup.ProjectConfigEntry.createImportEntry("import spilehx.core.logging.GlobalLogger;", projectPath);
+		spilehx.core.projectsetup.ProjectConfigEntry.createImportEntry("import spilehx.core.logging.GlobalLogger.*;", projectPath);
 		return macro {};
 	}
 	#end

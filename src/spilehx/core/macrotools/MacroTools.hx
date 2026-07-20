@@ -69,34 +69,7 @@ class MacroTools {
 		Returns files under a project-local folder with their byte sizes.
 	 */
 	public static function getFilesRecursively(path:String):Array<{path:String, size:Int}> {
-		path = validateProjectPath(path);
-
-		var files:Array<{path:String, size:Int}> = [];
-
-		// Check if the specified path exists and is a directory
-		if (FileSystem.exists(path) && FileSystem.isDirectory(path)) {
-			for (item in FileSystem.readDirectory(path)) {
-				var fullPath = path + "/" + item;
-
-				if (FileSystem.isDirectory(fullPath)) {
-					// Recursively add files from subdirectories
-					files = files.concat(getFilesRecursively(fullPath));
-				} else {
-					// if (item != Manifest.MANIFEST_FILE_NAME) {
-					// Get file size using FileSystem.stat
-					var fileStat:FileStat = FileSystem.stat(fullPath);
-
-					// get local file path
-					// var localPath = fullPath.replace(getEnvVar(ENV_KEY_outputFolderPath), ".");
-					files.push({path: fullPath, size: fileStat.size});
-					// }
-				}
-			}
-		} else {
-			Context.warning("Directory does not exist: " + path, Context.currentPos());
-		}
-
-		return files;
+		return spilehx.core.filesystem.FileFolderUtils.getFilesRecursively(validateProjectPath(path));
 	}
 
 	/**
@@ -105,30 +78,7 @@ class MacroTools {
 	public static function copyAssets(source:String, destination:String):Void {
 		source = validateProjectPath(source);
 		destination = validateProjectPath(destination);
-
-		ensureProjectFolder(destination);
-		// Check if the source exists and is a directory
-		if (FileSystem.exists(source) && FileSystem.isDirectory(source)) {
-			for (item in FileSystem.readDirectory(source)) {
-				var srcPath = source + "/" + item;
-				var destPath = destination + "/" + item;
-
-				if (FileSystem.isDirectory(srcPath)) {
-					// Recursively copy subdirectories
-					copyAssets(srcPath, destPath);
-				} else {
-					// Copy files by reading and writing their contents
-					try {
-						var content = File.getContent(srcPath); // Read file content
-						File.saveContent(destPath, content); // Write content to the destination
-					} catch (e:Dynamic) {
-						Context.error("Failed to copy file '" + srcPath + "' to '" + destPath + "': " + Std.string(e), Context.currentPos());
-					}
-				}
-			}
-		} else {
-			Context.warning("Source directory does not exist: " + source, Context.currentPos());
-		}
+		spilehx.core.filesystem.FileFolderUtils.copyAssets(source, destination);
 	}
 	#end
 }

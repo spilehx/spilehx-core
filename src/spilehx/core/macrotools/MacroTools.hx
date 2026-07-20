@@ -5,10 +5,8 @@ import sys.io.File;
 import haxe.macro.Context;
 import sys.FileSystem;
 import haxe.io.Path;
-
 #if macro
 import spilehx.core.logging.Log;
-
 #end
 
 /**
@@ -37,18 +35,8 @@ class MacroTools {
 		Relative and absolute paths must resolve inside the compiler working directory.
 	 */
 	public static function ensureProjectFolder(path:String):Void {
-		Log.compileTimeLogInfo("Ensuring project folder: " + path);
 		var validatedLocalFolderPath:String = validateProjectPath(path);
-
-		if (!FileSystem.exists(validatedLocalFolderPath)) {
-			try {
-				FileSystem.createDirectory(validatedLocalFolderPath);
-			} catch (e:Dynamic) {
-				Context.error("Failed to create directory '" + validatedLocalFolderPath + "': " + Std.string(e), Context.currentPos());
-			}
-		} else {
-			// Log.compileTimeLogInfo("Project folder already exists: " + validatedLocalFolderPath);
-		}
+		spilehx.core.filesystem.FileFolderUtils.ensureFolder(validatedLocalFolderPath);
 	}
 
 	/**
@@ -56,19 +44,8 @@ class MacroTools {
 		When the file is missing, an empty file is created.
 	 */
 	public static function ensureProjectFile(filePath:String):Void {
-		// Log.compileTimeLog("Ensuring project file: " + filePath);
 		var validatedLocalFilePath:String = validateProjectPath(filePath);
-
-		if (!FileSystem.exists(validatedLocalFilePath)) {
-			try {
-				Log.compileTimeLog("Ensuring project file: " + filePath);
-				File.saveContent(validatedLocalFilePath, "");
-			} catch (e:Dynamic) {
-				Context.error("Failed to create file '" + validatedLocalFilePath + "': " + Std.string(e), Context.currentPos());
-			}
-		} else {
-			// Log.compileTimeLogInfo("Project file already exists: " + validatedLocalFilePath);
-		}
+		spilehx.core.filesystem.FileFolderUtils.ensureFile(validatedLocalFilePath);
 	}
 
 	/**
@@ -153,6 +130,5 @@ class MacroTools {
 			Context.warning("Source directory does not exist: " + source, Context.currentPos());
 		}
 	}
-
 	#end
 }

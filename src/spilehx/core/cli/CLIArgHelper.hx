@@ -14,11 +14,11 @@ class CLIArgHelper {
 	public static final instance:CLIArgHelper = new CLIArgHelper();
 
 	private var CLICommandArgs:Array<CLICommandArg>;
-	private var onValidArgSubmitted:String->String->Void;
+	private var onValidArgSubmitted:CLICommandArg->Void;
 
 	private function new() {}
 
-	public function parseApplicationArguments(CLICommandArgs:Array<CLICommandArg>, onValidArgSubmitted:String->String->Void, argOverride:Array<String> = null) {
+	public function parseApplicationArguments(CLICommandArgs:Array<CLICommandArg>, onValidArgSubmitted:CLICommandArg->Void, argOverride:Array<String> = null) {
 		this.CLICommandArgs = CLICommandArgs;
 		this.onValidArgSubmitted = onValidArgSubmitted;
 
@@ -51,10 +51,28 @@ class CLIArgHelper {
 		if (helpArg == true || invalidKeyFound == true) {
 			printHelpAndExit();
 		} else {
+			var isolatedCommand:CLICommandArg = null;
+			var foundApplicationArguments:Array<CLICommandArg> = [];
+
 			while (cliArgs.length > 0) {
 				var cliArg:CLIArg = cliArgs.pop();
 				var foundApplicationArgument:CLICommandArg = Lambda.find(CLICommandArgs, arg -> arg.keyValue == cliArg.argKey);
-				onValidArgSubmitted(foundApplicationArgument.targetProperty, cliArg.argValue);
+				foundApplicationArgument.targetPropertyValue = cliArg.argValue;
+
+				if (foundApplicationArgument.isolatedCommand == true) {
+					isolatedCommand = foundApplicationArgument;
+				}
+
+				foundApplicationArguments.push(foundApplicationArgument);
+			}
+
+			if (isolatedCommand != null && foundApplicationArguments.length > 1) {
+				outputArgErrorMessage(isolatedCommand.keyValue + " cannot be used like this!");
+				printHelpAndExit();
+			} else {
+				for (foundApplicationArgument in foundApplicationArguments) {
+					onValidArgSubmitted(foundApplicationArgument);
+				}
 			}
 		}
 	}
@@ -104,7 +122,7 @@ class CLIArgHelper {
 
 	private function outputArgErrorMessage(errorMsg:String) {
 		USER_MESSAGE("");
-		USER_MESSAGE_ERROR("INVALID COMMAND: " + errorMsg);
+		USER_MESSAGE_ERROR("ERROR: " + errorMsg);
 	}
 
 	private function printHelpAndExit() {
@@ -125,7 +143,18 @@ class CLIArgHelper {
 		USER_MESSAGE("");
 		USER_MESSAGE("Options:");
 		for (arg in CLICommandArgs) {
-			USER_MESSAGE_INFO(INDENT + arg.keyValue + TAB + arg.description);
+			var msgContent:Array<String> = [];
+			msgContent.push(INDENT);
+			msgContent.push(arg.keyValue);
+
+			if (arg.targetProperty != null && arg.targetProperty != "") {
+				msgContent.push("[" + arg.targetProperty.toUpperCase() + "]");
+			}
+
+			msgContent.push(TAB);
+			msgContent.push(arg.description);
+
+			USER_MESSAGE_INFO(msgContent.join(" "));
 		}
 
 		USER_MESSAGE("");

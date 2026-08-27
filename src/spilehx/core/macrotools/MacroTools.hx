@@ -66,6 +66,21 @@ class MacroTools {
 	}
 
 	/**
+		Returns the normalized source root from `IMPORT_FILE_PATH`, defaulting to `./src`.
+	*/
+	public static function getSrcRoot():String {
+		var SRC_ROOT_ENV_ARG:String = "IMPORT_FILE_PATH";
+		var SRC_ROOT_DEFAULT:String = "./src";
+		var srcRoot:String = spilehx.core.macrotools.MacroTools.getEnvVar(SRC_ROOT_ENV_ARG, SRC_ROOT_DEFAULT);
+
+		if (srcRoot == "") {
+			srcRoot = SRC_ROOT_DEFAULT;
+		}
+
+		return spilehx.core.macrotools.MacroTools.validateProjectPath(srcRoot);
+	}
+
+	/**
 		Returns files under a project-local folder with their byte sizes.
 	 */
 	public static function getFilesRecursively(path:String):Array<{path:String, size:Int}> {

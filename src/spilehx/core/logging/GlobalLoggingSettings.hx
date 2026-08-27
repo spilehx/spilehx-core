@@ -73,6 +73,7 @@ class GlobalLoggingSettings {
 		this.maxLogFileLength = 100;
 		this.toFile = false;
 		this.stdErrOut = false;
+		this.verbose = true;
 	}
 
 	#if (!js)

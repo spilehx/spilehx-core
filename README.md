@@ -65,7 +65,7 @@ On non-JavaScript targets, file logging writes to:
 
 ### Import Setup
 
-The library includes a compile-time setup macro that adds the logging imports to `src/import.hx`:
+The library includes a compile-time setup macro that adds the logging imports to `src/import.hx` by default:
 
 ```hxml
 --macro spilehx.core.logging.GlobalLogger.ensureImport()
@@ -79,6 +79,15 @@ import spilehx.core.logging.GlobalLogger.*;
 ```
 
 Projects can keep this macro in an `.hxml` file, or include the provided `extraParams.hxml` if their build flow supports it.
+
+Set `IMPORT_FILE_PATH` to use a different source folder:
+
+```hxml
+-D IMPORT_FILE_PATH=./foo/bar
+--macro spilehx.core.logging.GlobalLogger.ensureImport()
+```
+
+This writes `./foo/bar/import.hx`.
 
 ### Project Utilities
 

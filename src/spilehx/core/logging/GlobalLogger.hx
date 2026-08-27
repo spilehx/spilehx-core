@@ -13,12 +13,12 @@ import spilehx.core.logging.GlobalLoggingSettings.CompileTimeLogType;
 class GlobalLogger {
 	#if macro
 	/**
-		Adds the global logger imports to `src/import.hx`.
+		Adds the global logger imports to `import.hx` in the configured source folder.
 	 */
 	public static macro function ensureImport():Expr {
 		// Log.compileTimeLog("Setting up Logging System");
 
-		var projectPath = spilehx.core.macrotools.MacroTools.validateProjectPath(".");
+		var projectPath = spilehx.core.macrotools.MacroTools.getSrcRoot();
 		spilehx.core.projectsetup.ProjectConfigEntry.createImportEntry("import spilehx.core.logging.GlobalLogger;", projectPath);
 		spilehx.core.projectsetup.ProjectConfigEntry.createImportEntry("import spilehx.core.logging.GlobalLogger.*;", projectPath);
 		return macro {};

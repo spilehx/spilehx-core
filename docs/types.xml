@@ -732,6 +732,24 @@
 
 		If `f` is null, the result is unspecified.</haxe_doc>
 		</exists>
+		<find public="1" params="T" set="method" line="255" static="1">
+			<f a="it:f">
+				<t path="Iterable"><c path="find.T"/></t>
+				<f a="item">
+					<c path="find.T"/>
+					<x path="Bool"/>
+				</f>
+				<x path="Null"><c path="find.T"/></x>
+			</f>
+			<haxe_doc>Returns the first element of `it` for which `f` is true.
+
+		This function returns as soon as an element is found for which a call to
+		`f` returns true.
+
+		If no such element is found, the result is null.
+
+		If `f` is null, the result is unspecified.</haxe_doc>
+		</find>
 		<haxe_doc>The `Lambda` class is a collection of methods to support functional
 	programming. It is ideally used with `using Lambda` and then acts as an
 	extension to Iterable types.
@@ -1727,6 +1745,18 @@
 		<meta><m n=":directlyUsed"/></meta>
 	</class>
 	<class path="StringTools" params="" file="/usr/share/haxe/std/StringTools.hx">
+		<endsWith public="1" set="method" line="251" static="1">
+			<f a="s:end">
+				<c path="String"/>
+				<c path="String"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>Tells if the string `s` ends with the string `end`.
+
+		If `end` is `null`, the result is unspecified.
+
+		If `end` is the empty String `""`, the result is true.</haxe_doc>
+		</endsWith>
 		<isSpace public="1" set="method" line="282" static="1">
 			<f a="s:pos">
 				<c path="String"/>
@@ -2644,6 +2674,45 @@
 	the same underlying type, even though it might be different on
 	specific platforms.</haxe_doc>
 	</typedef>
+	<class path="haxe.Log" params="" file="/usr/share/haxe/std/haxe/Log.hx">
+		<formatOutput public="1" set="method" line="33" static="1">
+			<f a="v:infos">
+				<d/>
+				<t path="haxe.PosInfos"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>Format the output of `trace` before printing it.</haxe_doc>
+		</formatOutput>
+		<trace public="1" set="dynamic" line="62" static="1">
+			<f a="v:?infos">
+				<d/>
+				<t path="haxe.PosInfos"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Outputs `v` in a platform-dependent way.
+
+		The second parameter `infos` is injected by the compiler and contains
+		information about the position where the `trace()` call was made.
+
+		This method can be rebound to a custom function:
+
+			var oldTrace = haxe.Log.trace; // store old function
+			haxe.Log.trace = function(v, ?infos) {
+			  // handle trace
+			}
+			...
+			haxe.Log.trace = oldTrace;
+
+		If it is bound to null, subsequent calls to `trace()` will cause an
+		exception.</haxe_doc>
+		</trace>
+		<haxe_doc>Log primarily provides the `trace()` method, which is invoked upon a call to
+	`trace()` in Haxe code.</haxe_doc>
+		<meta>
+			<m n=":keep"/>
+			<m n=":directlyUsed"/>
+		</meta>
+	</class>
 	<class path="haxe.NativeStackTrace" params="" file="/usr/share/haxe/std/haxe/NativeStackTrace.hx" extern="1">
 		<saveStack public="1" set="method" static="1"><f a="exception">
 	<x path="Any"/>
@@ -3510,6 +3579,12 @@
 		The `bufsize` optional argument specifies the size of chunks by
 		which data is read. Its default value is target-specific.</haxe_doc>
 		</readAll>
+		<readLine public="1" set="method" line="176">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>Read a line of text separated by CR and/or LF bytes.
+
+		The CR/LF characters are not included in the resulting string.</haxe_doc>
+		</readLine>
 		<haxe_doc>An Input is an abstract reader. See other classes in the `haxe.io` package
 	for several possible implementations.
 
@@ -4641,6 +4716,166 @@
 		</a>
 		<haxe_doc>Represents a typed AST node.</haxe_doc>
 	</typedef>
+	<class path="spilehx.core.cli.CLIArgHelper" params="" file="src/spilehx/core/cli/CLIArgHelper.hx">
+		<instance final="1" public="1" set="null" expr="new CLIArgHelper()" line="14" static="1">
+			<c path="spilehx.core.cli.CLIArgHelper"/>
+			<meta><m n=":value"><e>new CLIArgHelper()</e></m></meta>
+		</instance>
+		<INDENT expr="&quot;  \t&quot;">
+			<c path="String"/>
+			<meta><m n=":value"><e>"  \t"</e></m></meta>
+		</INDENT>
+		<TAB expr="&quot;\t&quot;">
+			<c path="String"/>
+			<meta><m n=":value"><e>"\t"</e></m></meta>
+		</TAB>
+		<helpText_appName public="1" get="null">
+			<c path="String"/>
+			<meta><m n=":isVar"/></meta>
+		</helpText_appName>
+		<helpText_version public="1" get="null">
+			<c path="String"/>
+			<meta><m n=":isVar"/></meta>
+		</helpText_version>
+		<helpText_usage public="1" get="null">
+			<c path="String"/>
+			<meta><m n=":isVar"/></meta>
+		</helpText_usage>
+		<helpText_description public="1" get="null">
+			<c path="Array"><c path="String"/></c>
+			<meta><m n=":isVar"/></meta>
+		</helpText_description>
+		<helpText_examples public="1" get="null">
+			<c path="Array"><c path="String"/></c>
+			<meta><m n=":isVar"/></meta>
+		</helpText_examples>
+		<exitOnNoCliArgs public="1" get="null">
+			<x path="Bool"/>
+			<meta><m n=":isVar"/></meta>
+		</exitOnNoCliArgs>
+		<CLICommandArgs><c path="Array"><c path="spilehx.core.cli.CLICommandArg"/></c></CLICommandArgs>
+		<onValidArgSubmitted><f a="">
+	<c path="spilehx.core.cli.CLICommandArg"/>
+	<x path="Void"/>
+</f></onValidArgSubmitted>
+		<parseApplicationArguments public="1" set="method" line="21">
+			<f a="CLICommandArgs:onValidArgSubmitted:?argOverride" v="::null">
+				<c path="Array"><c path="spilehx.core.cli.CLICommandArg"/></c>
+				<f a="">
+					<c path="spilehx.core.cli.CLICommandArg"/>
+					<x path="Void"/>
+				</f>
+				<c path="Array"><c path="String"/></c>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":value"><e>{ argOverride : null }</e></m></meta>
+		</parseApplicationArguments>
+		<triggerCLIArgs set="method" line="38"><f a="cliArgs">
+	<c path="Array"><t path="spilehx.core.cli.CLIArg"/></c>
+	<x path="Void"/>
+</f></triggerCLIArgs>
+		<getValidCLIArgs set="method" line="80">
+			<f a="?argOverride" v="null">
+				<c path="Array"><c path="String"/></c>
+				<c path="Array"><t path="spilehx.core.cli.CLIArg"/></c>
+			</f>
+			<meta><m n=":value"><e>{ argOverride : null }</e></m></meta>
+		</getValidCLIArgs>
+		<outputArgErrorMessage set="method" line="123"><f a="errorMsg">
+	<c path="String"/>
+	<x path="Void"/>
+</f></outputArgErrorMessage>
+		<printHelpAndExit set="method" line="128"><f a=""><x path="Void"/></f></printHelpAndExit>
+		<new set="method" line="19"><f a=""><x path="Void"/></f></new>
+	</class>
+	<typedef path="spilehx.core.cli.CLIArg" params="" file="src/spilehx/core/cli/CLIArgHelper.hx" module="spilehx.core.cli.CLIArgHelper"><a>
+	<argValue><c path="String"/></argValue>
+	<argKey><c path="String"/></argKey>
+</a></typedef>
+	<class path="spilehx.core.cli.CLICommandArg" params="" file="src/spilehx/core/cli/CLICommandArg.hx">
+		<keyValue public="1" set="null">
+			<c path="String"/>
+			<meta><m n=":isVar"/></meta>
+		</keyValue>
+		<targetProperty public="1" set="null">
+			<c path="String"/>
+			<meta><m n=":isVar"/></meta>
+		</targetProperty>
+		<description public="1" set="null">
+			<c path="String"/>
+			<meta><m n=":isVar"/></meta>
+		</description>
+		<isolatedCommand public="1" set="null">
+			<x path="Bool"/>
+			<meta><m n=":isVar"/></meta>
+		</isolatedCommand>
+		<targetPropertyValue public="1">
+			<c path="String"/>
+			<meta><m n=":isVar"/></meta>
+		</targetPropertyValue>
+		<new public="1" set="method" line="10">
+			<f a="keyValue:targetProperty:description:?isolatedCommand" v=":::true">
+				<c path="String"/>
+				<c path="String"/>
+				<c path="String"/>
+				<x path="Bool"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":value"><e>{ isolatedCommand : true }</e></m></meta>
+		</new>
+	</class>
+	<class path="spilehx.core.cli.CLIUserInput" params="" file="src/spilehx/core/cli/CLIUserInput.hx">
+		<ask public="1" set="method" line="6" static="1"><f a="question:?defaultValue">
+	<c path="String"/>
+	<c path="String"/>
+	<c path="String"/>
+</f></ask>
+		<askConfirm public="1" set="method" line="28" static="1">
+			<f a="question:?defaultValue" v=":false">
+				<c path="String"/>
+				<x path="Bool"/>
+				<x path="Bool"/>
+			</f>
+			<meta><m n=":value"><e>{ defaultValue : false }</e></m></meta>
+		</askConfirm>
+		<askOptions public="1" set="method" line="33" static="1"><f a="question:options">
+	<c path="String"/>
+	<c path="Array"><t path="spilehx.core.cli.CLIUserInputOptions"/></c>
+	<x path="Void"/>
+</f></askOptions>
+		<exitWithMessage set="method" line="62" static="1"><f a=""><x path="Void"/></f></exitWithMessage>
+	</class>
+	<typedef path="spilehx.core.cli.CLIUserInputOptions" params="" file="src/spilehx/core/cli/CLIUserInput.hx" module="spilehx.core.cli.CLIUserInput"><a>
+	<label><c path="String"/></label>
+	<callBack><x path="haxe.Function"/></callBack>
+</a></typedef>
+	<class path="spilehx.core.filesystem.FileFolderUtils" params="" file="src/spilehx/core/filesystem/FileFolderUtils.hx">
+		<isFolderEmpty public="1" set="method" line="11" static="1"><f a="path">
+	<c path="String"/>
+	<x path="Bool"/>
+</f></isFolderEmpty>
+		<ensureFolder public="1" set="method" line="15" static="1"><f a="path">
+	<c path="String"/>
+	<x path="Void"/>
+</f></ensureFolder>
+		<ensureFile public="1" set="method" line="36" static="1"><f a="filePath">
+	<c path="String"/>
+	<x path="Void"/>
+</f></ensureFile>
+		<getFilesRecursively public="1" set="method" line="55" static="1"><f a="path">
+	<c path="String"/>
+	<c path="Array"><a>
+	<size><x path="Int"/></size>
+	<path><c path="String"/></path>
+</a></c>
+</f></getFilesRecursively>
+		<copyAssets public="1" set="method" line="84" static="1"><f a="source:destination">
+	<c path="String"/>
+	<c path="String"/>
+	<x path="Void"/>
+</f></copyAssets>
+		<meta><m n=":directlyUsed"/></meta>
+	</class>
 	<class path="spilehx.core.logging.GlobalLoggingSettings" params="" file="src/spilehx/core/logging/GlobalLoggingSettings.hx">
 		<MSG_ERROR public="1" get="inline" set="null" expr="&quot;ERROR&quot;" line="8" static="1">
 			<c path="String"/>
@@ -4748,16 +4983,16 @@
 			<meta><m n=":isVar"/></meta>
 			<haxe_doc>Sends error log messages to stderr on non-JavaScript targets.</haxe_doc>
 		</stdErrOut>
-		<clearLogFile public="1" set="method" line="82">
+		<clearLogFile public="1" set="method" line="83">
 			<f a=""><x path="Void"/></f>
 			<haxe_doc>Clears the configured log file.</haxe_doc>
 		</clearLogFile>
-		<get_toFile set="method" line="87"><f a=""><x path="Bool"/></f></get_toFile>
-		<set_toFile set="method" line="96"><f a="toFile">
+		<get_toFile set="method" line="88"><f a=""><x path="Bool"/></f></get_toFile>
+		<set_toFile set="method" line="97"><f a="toFile">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_toFile>
-		<get_logFilePath set="method" line="100"><f a=""><c path="String"/></f></get_logFilePath>
+		<get_logFilePath set="method" line="101"><f a=""><c path="String"/></f></get_logFilePath>
 		<new set="method" line="68"><f a=""><x path="Void"/></f></new>
 		<haxe_doc>Shared settings for the global logging API.</haxe_doc>
 		<meta><m n=":directlyUsed"/></meta>
@@ -4870,14 +5105,14 @@
 		</meta>
 	</class>
 	<class path="spilehx.core.logging.GlobalLogger" params="" file="src/spilehx/core/logging/GlobalLogger.hx">
-		<debugPrefix expr="Log.debugPrefix" line="26" static="1">
+		<debugPrefix expr="Log.debugPrefix" line="28" static="1">
 			<f a="pos">
 				<t path="haxe.PosInfos"/>
 				<c path="String"/>
 			</f>
 			<meta><m n=":value"><e>Log.debugPrefix</e></m></meta>
 		</debugPrefix>
-		<LOG_SETTINGS public="1" expr="GlobalLoggingSettings.settings" line="31" static="1">
+		<LOG_SETTINGS public="1" expr="GlobalLoggingSettings.settings" line="33" static="1">
 			<c path="spilehx.core.logging.GlobalLoggingSettings"/>
 			<meta><m n=":value"><e>GlobalLoggingSettings.settings</e></m></meta>
 			<haxe_doc>Shared logging configuration.</haxe_doc>
@@ -4917,7 +5152,7 @@
 			</f>
 			<haxe_doc>Logs the reflected fields of an object when verbose logging is enabled.</haxe_doc>
 		</LOG_OBJECT>
-		<USER_MESSAGE public="1" set="method" line="72" static="1">
+		<USER_MESSAGE public="1" set="method" line="74" static="1">
 			<f a="msg:?forceMsg" v=":true">
 				<c path="String"/>
 				<x path="Bool"/>
@@ -4927,7 +5162,7 @@
 			<haxe_doc>Writes a user-visible message.
 		When `forceMsg` is false, output is suppressed unless verbose logging is enabled.</haxe_doc>
 		</USER_MESSAGE>
-		<USER_MESSAGE_INFO public="1" set="method" line="84" static="1">
+		<USER_MESSAGE_INFO public="1" set="method" line="86" static="1">
 			<f a="msg:?forceMsg" v=":true">
 				<c path="String"/>
 				<x path="Bool"/>
@@ -4937,7 +5172,7 @@
 			<haxe_doc>Writes an informational user-visible message.
 		When `forceMsg` is false, output is suppressed unless verbose logging is enabled.</haxe_doc>
 		</USER_MESSAGE_INFO>
-		<USER_MESSAGE_WARN public="1" set="method" line="96" static="1">
+		<USER_MESSAGE_WARN public="1" set="method" line="98" static="1">
 			<f a="msg:?forceMsg" v=":true">
 				<c path="String"/>
 				<x path="Bool"/>
@@ -4947,7 +5182,7 @@
 			<haxe_doc>Writes a warning user-visible message.
 		When `forceMsg` is false, output is suppressed unless verbose logging is enabled.</haxe_doc>
 		</USER_MESSAGE_WARN>
-		<USER_MESSAGE_ERROR public="1" set="method" line="108" static="1">
+		<USER_MESSAGE_ERROR public="1" set="method" line="110" static="1">
 			<f a="msg:?forceMsg" v=":true">
 				<c path="String"/>
 				<x path="Bool"/>
@@ -4957,7 +5192,7 @@
 			<haxe_doc>Writes an error user-visible message.
 		When `forceMsg` is false, output is suppressed unless verbose logging is enabled.</haxe_doc>
 		</USER_MESSAGE_ERROR>
-		<logImpl public="1" set="method" line="129" static="1">
+		<logImpl public="1" set="method" line="131" static="1">
 			<f a="msg:?pos">
 				<c path="String"/>
 				<x path="Null"><t path="haxe.PosInfos"/></x>
@@ -4968,7 +5203,7 @@
 				<m n=":noCompletion"/>
 			</meta>
 		</logImpl>
-		<logInfoImpl public="1" set="method" line="139" static="1">
+		<logInfoImpl public="1" set="method" line="141" static="1">
 			<f a="msg:?pos">
 				<c path="String"/>
 				<x path="Null"><t path="haxe.PosInfos"/></x>
@@ -4979,7 +5214,7 @@
 				<m n=":noCompletion"/>
 			</meta>
 		</logInfoImpl>
-		<logErrorImpl public="1" set="method" line="149" static="1">
+		<logErrorImpl public="1" set="method" line="151" static="1">
 			<f a="msg:?pos">
 				<c path="String"/>
 				<x path="Null"><t path="haxe.PosInfos"/></x>
@@ -4990,7 +5225,7 @@
 				<m n=":noCompletion"/>
 			</meta>
 		</logErrorImpl>
-		<logWarnImpl public="1" set="method" line="155" static="1">
+		<logWarnImpl public="1" set="method" line="157" static="1">
 			<f a="msg:?pos">
 				<c path="String"/>
 				<x path="Null"><t path="haxe.PosInfos"/></x>
@@ -5001,7 +5236,7 @@
 				<m n=":noCompletion"/>
 			</meta>
 		</logWarnImpl>
-		<logObjectImpl public="1" set="method" line="166" static="1">
+		<logObjectImpl public="1" set="method" line="168" static="1">
 			<f a="obj:?pos">
 				<d/>
 				<x path="Null"><t path="haxe.PosInfos"/></x>
@@ -5013,6 +5248,7 @@
 			</meta>
 		</logObjectImpl>
 		<haxe_doc>Global logging macros and user-message helpers.</haxe_doc>
+		<meta><m n=":directlyUsed"/></meta>
 	</class>
 	<enum path="spilehx.core.logging.CompileTimeLogType" params="" file="src/spilehx/core/logging/GlobalLoggingSettings.hx" module="spilehx.core.logging.GlobalLoggingSettings">
 		<NORMAL/>
@@ -5025,7 +5261,6 @@
 		</meta>
 	</enum>
 	<class path="spilehx.core.macrotools.MacroTools" params="" file="src/spilehx/core/macrotools/MacroTools.hx"><haxe_doc>Compile-time file helpers for project-local paths.</haxe_doc></class>
-	<class path="spilehx.core.macrotools.projectsetup.ProjectConfigEntry" params="" file="src/spilehx/core/macrotools/projectsetup/ProjectConfigEntry.hx"><meta><m n=":dox"><e>hide</e></m></meta></class>
 	<class path="spilehx.core.projectmanagement.Archive" params="" file="src/spilehx/core/projectmanagement/Archive.hx">
 		<createArchive public="1" set="method" line="14" static="1">
 			<f a="sourcePath:targetPath:archiveName:onComplete">
@@ -5071,6 +5306,104 @@
 	<x path="Int"/>
 </f></compare>
 		<haxe_doc>Builds short fingerprints for folder contents.</haxe_doc>
+	</class>
+	<class path="spilehx.core.projectsetup.ProjectConfigEntry" params="" file="src/spilehx/core/projectsetup/ProjectConfigEntry.hx">
+		<createGitIgnoreEntry public="1" set="method" line="19" static="1">
+			<f a="content:?basePath" v=":&quot;.&quot;">
+				<c path="String"/>
+				<c path="String"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":value"><e>{ basePath : "." }</e></m></meta>
+		</createGitIgnoreEntry>
+		<createImportEntry public="1" set="method" line="24" static="1">
+			<f a="content:?basePath" v=":&quot;.&quot;">
+				<c path="String"/>
+				<c path="String"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":value"><e>{ basePath : "." }</e></m></meta>
+		</createImportEntry>
+		<createBuildHxmlEntry public="1" set="method" line="29" static="1">
+			<f a="content:?basePath" v=":&quot;.&quot;">
+				<c path="String"/>
+				<c path="String"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":value"><e>{ basePath : "." }</e></m></meta>
+		</createBuildHxmlEntry>
+		<addEntry set="method" line="34" static="1"><f a="entry:basePath">
+	<c path="spilehx.core.projectsetup.ProjectConfigEntry"/>
+	<c path="String"/>
+	<x path="Void"/>
+</f></addEntry>
+		<file public="1" set="null">
+			<c path="String"/>
+			<meta><m n=":isVar"/></meta>
+		</file>
+		<sectionHeader public="1" set="null">
+			<c path="String"/>
+			<meta><m n=":isVar"/></meta>
+		</sectionHeader>
+		<content public="1" set="null">
+			<c path="String"/>
+			<meta><m n=":isVar"/></meta>
+		</content>
+		<new set="method" line="13"><f a="file:sectionHeader:content">
+	<c path="String"/>
+	<c path="String"/>
+	<c path="String"/>
+	<x path="Void"/>
+</f></new>
+		<meta><m n=":dox"><e>hide</e></m></meta>
+	</class>
+	<class path="spilehx.core.projectsetup._ProjectConfigEntry.ProjectConfigEntryGitIgnore" params="" file="src/spilehx/core/projectsetup/ProjectConfigEntry.hx" private="1" module="spilehx.core.projectsetup.ProjectConfigEntry">
+		<extends path="spilehx.core.projectsetup.ProjectConfigEntry"/>
+		<HEADER get="inline" set="null" expr="&quot;# Auto generated by Spilehx&quot;" line="78" static="1">
+			<c path="String"/>
+			<meta><m n=":value"><e>"# Auto generated by Spilehx"</e></m></meta>
+		</HEADER>
+		<FILE get="inline" set="null" expr="&quot;.gitignore&quot;" line="79" static="1">
+			<c path="String"/>
+			<meta><m n=":value"><e>".gitignore"</e></m></meta>
+		</FILE>
+		<new public="1" set="method" line="81"><f a="content">
+	<c path="String"/>
+	<x path="Void"/>
+</f></new>
+		<meta><m n=":directlyUsed"/></meta>
+	</class>
+	<class path="spilehx.core.projectsetup._ProjectConfigEntry.ProjectConfigEntryImport" params="" file="src/spilehx/core/projectsetup/ProjectConfigEntry.hx" private="1" module="spilehx.core.projectsetup.ProjectConfigEntry">
+		<extends path="spilehx.core.projectsetup.ProjectConfigEntry"/>
+		<HEADER get="inline" set="null" expr="&quot;// Auto generated by Spilehx&quot;" line="87" static="1">
+			<c path="String"/>
+			<meta><m n=":value"><e>"// Auto generated by Spilehx"</e></m></meta>
+		</HEADER>
+		<FILE get="inline" set="null" expr="&quot;src/import.hx&quot;" line="88" static="1">
+			<c path="String"/>
+			<meta><m n=":value"><e>"src/import.hx"</e></m></meta>
+		</FILE>
+		<new public="1" set="method" line="90"><f a="content">
+	<c path="String"/>
+	<x path="Void"/>
+</f></new>
+		<meta><m n=":directlyUsed"/></meta>
+	</class>
+	<class path="spilehx.core.projectsetup._ProjectConfigEntry.ProjectConfigEntryBuildHxml" params="" file="src/spilehx/core/projectsetup/ProjectConfigEntry.hx" private="1" module="spilehx.core.projectsetup.ProjectConfigEntry">
+		<extends path="spilehx.core.projectsetup.ProjectConfigEntry"/>
+		<HEADER get="inline" set="null" expr="&quot;# Auto generated by Spilehx&quot;" line="96" static="1">
+			<c path="String"/>
+			<meta><m n=":value"><e>"# Auto generated by Spilehx"</e></m></meta>
+		</HEADER>
+		<FILE get="inline" set="null" expr="&quot;build.hxml&quot;" line="97" static="1">
+			<c path="String"/>
+			<meta><m n=":value"><e>"build.hxml"</e></m></meta>
+		</FILE>
+		<new public="1" set="method" line="99"><f a="content">
+	<c path="String"/>
+	<x path="Void"/>
+</f></new>
+		<meta><m n=":directlyUsed"/></meta>
 	</class>
 	<typedef path="sys.FileStat" params="" file="/usr/share/haxe/std/sys/FileStat.hx">
 		<a>

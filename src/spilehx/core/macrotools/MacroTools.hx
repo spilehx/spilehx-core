@@ -96,4 +96,17 @@ class MacroTools {
 		spilehx.core.filesystem.FileFolderUtils.copyAssets(source, destination);
 	}
 	#end
+
+	/**
+		Helpers for compile-time file reading. Returns the file content as a string literal.
+	 */
+	public static macro function fileAsString(path:String):ExprOf<String> {
+		var content:String = "";
+
+		if (sys.FileSystem.exists(path) == true) {
+			content = sys.io.File.getContent(path);
+		}
+
+		return macro $v{content};
+	}
 }
